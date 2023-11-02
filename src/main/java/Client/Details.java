@@ -16,49 +16,40 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
-/**
- *
- * @author Admin
- */
 import javax.swing.table.DefaultTableModel;
 
 import Objects.Film;
 import Objects.FilmShowTimes;
+import Server.server;
 
 public class Details extends javax.swing.JDialog {
 
     /**
      * Creates new form Details
      */
+	private static int idFilm;
+	private String date;
+	private String filmNameChosen;
+	private String casts;
+	private Film film;
     public Details(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         idFilm = client.idFilmChosen;
-//        idFilm = 961;
         date = client.date;
-//        System.out.print("date:  " + date);
-        film = getFilmDetails(idFilm);
+		film = server.getFilmDetails(idFilm);
         filmNameChosen = client.filmNameChosen;
         casts = "";
-//        showTimes = Index.showtimes;
         initComponents();
-        setModelShowtime(getShowTimes(client.idCinemaChosen, client.date));
-        
+     // implement UI for this function
+//		setModelShowtime(server.getShowTimes(client.idCinemaChosen, client.date));
         this.setLocationRelativeTo(null);
-        
-//        System.out.println("id: " + getIdFilm());
-        //set Logo icon
-//        System.out.println(film.getGraphicUrl());
+        for(int i = 0; i < server.getShowTimes(client.idCinemaChosen, client.date).size(); i++) {
+        	System.out.print("time:  " + i + " " + server.getShowTimes(client.idCinemaChosen, client.date).get(i).getShowTimes());
+        }
         try {
         	URL url = new URL(film.getGraphicUrl());
         	System.out.println(url);
-//        	BufferedImage image = ImageIO.read(url);
             ImageIcon icon = new ImageIcon(url);
-            
-            
-//            Image originalImage = icon.getImage();
-//            Image resizedImage = originalImage.getScaledInstance(300, 200, Image.SCALE_SMOOTH);
-//            ImageIcon resizedIcon = new ImageIcon(resizedImage);
-//            graphic_URL.setPreferredSize(new Dimension(300, 200));
             graphic_URL.setIcon(icon);
         } catch (IOException e) {
             e.printStackTrace();

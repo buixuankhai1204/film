@@ -269,7 +269,7 @@ public class server {
     	return res;
     }
     
-    private static ArrayList<FilmShowTimes> getShowTimes(int idCinema, String date){
+    public static ArrayList<FilmShowTimes> getShowTimes(int idCinema, String date){
     	String URL = "https://moveek.com/cinema/showtime/" + String.valueOf(idCinema) + "?date=" + date + "&header=1";
     	Document doc;
 		try {
@@ -353,7 +353,7 @@ public class server {
         }
       }
     
-    private static Film getFilmDetails(int id) {
+    public static Film getFilmDetails(int id) {
     	try {
     		//https://momo.vn/_next/data/oiS9q8CYcgd5gdJU1wFbw/cinema/phim-chieu.json
     		//https://moveek.com/cinema/showtime/114418?date=2023-05-09&header=1
